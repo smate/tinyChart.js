@@ -21,6 +21,7 @@ Chromium 154 on macOS, driven with Playwright:
 - Expandable data table exposed seven rows.
 - At 390 × 844, document width remained 390 px and the chart fit its container.
 - Four minimal examples rendered without nonfinite path coordinates.
+- The minified ESM artifact rendered, updated, and destroyed a chart in-browser.
 - Accessible chart image names were present in browser snapshots.
 - No browser console errors or warnings were recorded.
 
