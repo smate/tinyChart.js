@@ -1,0 +1,26 @@
+{
+  "name": "tinychart.js",
+  "version": "0.1.0",
+  "description": "Tiny, dependency-free handwritten SVG line charts. Just JavaScript.",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "author": "tinyChart.js contributors",
+  "keywords": ["chart", "line-chart", "hand-drawn", "svg", "tiny", "vanilla-js"],
+  "exports": { ".": "./dist/tinychart.js" },
+  "files": ["dist/tinychart.js", "src", "docs/api.md"],
+  "sideEffects": false,
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "build": "node scripts/build.js",
+    "size": "node scripts/size.js",
+    "test": "node --test",
+    "check": "npm test && npm run build && npm run size && node scripts/package-check.js",
+    "dev": "node scripts/serve.js",
+    "prepack": "npm run check"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2",
+    "linkedom": "0.18.13"
+  }
+}

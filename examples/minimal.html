@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>tinyChart.js — minimal examples</title>
+    <link rel="icon" href="data:,">
+    <style>
+      body { max-width: 760px; margin: 40px auto; padding: 0 24px; font: 16px/1.6 system-ui, sans-serif; color: #262521; }
+      section { margin-block: 40px; } h2 { font-size: 18px; } a { color: #a3472b; }
+    </style>
+  </head>
+  <body>
+    <a href="/">← Playground</a><h1>Small, by example.</h1>
+    <section><h2>One line, dotted paper</h2><div id="simple"></div></section>
+    <section><h2>Multiple lines, irregular x coordinates, and a gap</h2><div id="multiple"></div></section>
+    <section><h2>A flat series and a single point</h2><div id="flat"></div></section>
+    <section><h2>A precise sparkline (roughness: 0)</h2><div id="sparkline"></div></section>
+    <script type="module">
+      import { tinyChart } from '../src/index.js';
+
+      tinyChart('#simple', {
+        dots: true, label: 'Values rise to nine before falling to three',
+        series: [{ data: [2, 5, 3, 9, 6, 3], color: '#c25938' }],
+      });
+
+      tinyChart('#multiple', {
+        label: 'Two irregular series, with missing data in the green series',
+        series: [
+          { name: 'First', data: [[0, 2], [2, 8], [5, 3], [9, 6]], color: '#c25938' },
+          { name: 'Second', data: [[0, 6], [2, 3], [3, null], [5, 7], [9, 4]], color: '#567569' },
+        ],
+      });
+
+      tinyChart('#flat', {
+        label: 'A constant value of five, and one point at x two, y six',
+        series: [
+          { data: [5, 5, 5, 5], color: '#567569' },
+          { data: [[2, 6]], color: '#c25938' },
+        ],
+      });
+
+      tinyChart('#sparkline', {
+        axes: false, roughness: 0, height: 120,
+        label: 'Sparkline rising from two to seven',
+        series: [{ data: [2, 4, 3, 6, 4, 7], color: '#567569' }],
+      });
+    </script>
+  </body>
+</html>
