@@ -69,3 +69,15 @@ The fixes preserve failed-update atomicity and the dependency-free ESM runtime.
   `playground-desktop-final.png`, `playground-mobile-final.png`, `minimal-final.png`
   and `module-regressions-final.png`. The reproducible browser checks are saved
   locally as `output/playwright/runtime-regressions.js`.
+
+## GitHub upload — 2026-10-06
+
+- User created `smate/tinyChart.js` and authorized uploading the local project.
+- Added real repository, homepage and issue URLs to package metadata and updated
+  the README's measured sizes. `npm run check` passed all 30 tests, build, size
+  budgets and the built-package smoke check after these changes.
+- After the user registered the prepared SSH key, `git push -u origin main`
+  succeeded. Local `main` now tracks `origin/main`.
+- Uploaded source, tests, documentation, MIT license, issue templates and the
+  Node 22/24 CI workflow. Generated artifacts remain excluded. The npm package
+  stays unpublished with `private: true`.
