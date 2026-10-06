@@ -1,5 +1,5 @@
 const NS = 'http://www.w3.org/2000/svg';
-let id = 0;
+const ID = Symbol.for('tinyChart.id');
 
 const defaults = {
   width: 640,
@@ -26,9 +26,9 @@ const number = Number.isFinite;
 /** Create a responsive SVG line chart. See docs/api.md for the full contract. */
 export function tinyChart(target, options = {}) {
   if (typeof target === 'string') target = document.querySelector(target);
-  assert(target?.appendChild && target.ownerDocument, 'target must be an element');
+  assert(target?.nodeType === 1 && typeof target.appendChild === 'function'
+    && target.ownerDocument, 'target must be an element');
   const doc = target.ownerDocument;
-  const patternId = `tinychart-${++id}`;
   let config = { ...defaults, ...options };
   let alive = true;
 
@@ -49,12 +49,22 @@ export function tinyChart(target, options = {}) {
     assert(number(roughness) && roughness >= 0 && roughness <= 10,
       'roughness must be between 0 and 10');
     assert(Number.isInteger(o.seed), 'seed must be an integer');
+    for (const key of ['axes', 'dots']) {
+      assert(typeof o[key] === 'boolean', `${key} must be a boolean`);
+    }
+    for (const key of ['color', 'dotColor', 'label']) {
+      assert(typeof o[key] === 'string', `${key} must be a string`);
+    }
     assert(Array.isArray(o.series), 'series must be an array');
 
     let xMin = Infinity, xMax = -Infinity, yMin = Infinity, yMax = -Infinity;
-    const series = o.series.map((line) => {
+    const series = Array.from(o.series, (line) => {
       assert(line && Array.isArray(line.data), 'each series needs a data array');
-      const points = line.data.map((point, index) => {
+      for (const key of ['color', 'name']) {
+        assert(line[key] === undefined || typeof line[key] === 'string',
+          `series ${key} must be a string`);
+      }
+      const points = Array.from(line.data, (point, index) => {
         if (point === null) return null;
         const [x, y] = Array.isArray(point) ? point : [index, point];
         assert((!Array.isArray(point) || point.length === 2) && number(x)
@@ -76,7 +86,7 @@ export function tinyChart(target, options = {}) {
       } else if (!number(min)) {
         min = 0; max = 1;
       } else if (min === max) {
-        const delta = Math.abs(min) * 0.05 || 1;
+        const delta = min === 0 ? 1 : Math.abs(min) * 0.05;
         min -= delta; max += delta;
       }
       assert(number(max - min) && max > min, 'domain range must be finite and nonzero');
@@ -102,16 +112,27 @@ export function tinyChart(target, options = {}) {
         else {
           const [px, py] = previous, dx = x - px, dy = y - py;
           const length = Math.hypot(dx, dy);
+          assert(number(length), 'segment range must be finite');
           const steps = roughness ? Math.min(256, Math.max(1, Math.ceil(length / 8))) : 1;
           for (let i = 1; i <= steps; i++) {
             const t = i / steps, offset = i === steps ? 0 : random() * roughness;
-            d += `L${round(px + dx * t - dy / (length || 1) * offset)},${round(py + dy * t + dx / (length || 1) * offset)}`;
+            d += i === steps ? `L${round(x)},${round(y)}`
+              : `L${round(px + dx * t - dy / (length || 1) * offset)},${round(py + dy * t + dx / (length || 1) * offset)}`;
           }
         }
         previous = point;
       }
       return d;
     };
+
+    // Share the counter across module copies, including charts in detached hosts.
+    const root = target.getRootNode();
+    let patternId;
+    do {
+      patternId = `tinychart-${doc[ID] = (doc[ID] || 0) + 1}`;
+    } while ([doc, root].some((scope) => scope.id === patternId
+      || scope.id === `${patternId}-clip`
+      || scope.querySelector(`#${patternId},#${patternId}-clip`)));
 
     const svg = node('svg', {
       xmlns: NS, viewBox: `0 0 ${width} ${height}`, width, height,

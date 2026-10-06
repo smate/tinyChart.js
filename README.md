@@ -2,8 +2,8 @@
 
 **Little line charts that look like you drew them.**
 
-Vanilla JavaScript. Responsive SVG. Zero runtime dependencies. **1,927 bytes gzip**
-(3,509 bytes minified; measured with the pinned build tools). No fonts, stylesheets,
+Vanilla JavaScript. Responsive SVG. Zero runtime dependencies. **2,140 bytes gzip**
+(4,055 bytes minified; measured with the pinned build tools). No fonts, stylesheets,
 frameworks, or drawing engines to download.
 
 - A repeatable, hand-drawn stroke; set `roughness: 0` for a clean line.
@@ -12,7 +12,8 @@ frameworks, or drawing engines to download.
 - Numeric or `[x, y]` data, missing-value gaps, shared scales, and fixed domains.
 - Small `update()` / `destroy()` API and accessible SVG labels.
 
-This is an **unpublished 0.1.0 project**, initialized locally. The provisional npm
+This is a **pre-release 0.1.0 project** hosted on
+[GitHub](https://github.com/smate/tinyChart.js), not yet published to npm. The provisional npm
 name is `tinychart.js`; it has not been reserved. Publishing is disabled with
 `private: true` until the [release checklist](docs/releasing.md) is complete.
 

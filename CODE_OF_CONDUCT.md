@@ -8,6 +8,6 @@ person's private information without permission are unacceptable.
 Maintainers may remove harmful content or restrict participation to protect the
 community. Decisions should be proportionate and communicated with respect.
 
-This project currently has no public community or reporting channel. Setting up
-a private maintainer contact is a required task before opening the repository to
-contributions; that contact will be documented here before public launch.
+A private conduct-reporting contact is not yet configured. Setting up a private
+maintainer contact remains a release task; that contact will be documented here
+when available.

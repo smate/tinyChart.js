@@ -1,7 +1,7 @@
 # Contributing
 
-Thanks for helping keep tinyChart.js small and useful. The repository is currently
-local; the same workflow applies once it has a public home.
+Thanks for helping keep tinyChart.js small and useful. The repository is hosted
+at [smate/tinyChart.js](https://github.com/smate/tinyChart.js).
 
 1. Use Node 22 or newer; `.nvmrc` selects Node 24. Run `npm ci`.
 2. Make a focused branch and change. Use plain JavaScript and ES modules.

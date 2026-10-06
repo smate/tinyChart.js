@@ -40,7 +40,7 @@ source in a browser. The npm entry exports only the minified ESM artifact;
 
 ## Byte budget
 
-The initial bundle measures 3,509 bytes minified, 1,927 bytes gzip, and 1,718 bytes
+The current bundle measures 4,055 bytes minified, 2,140 bytes gzip, and 1,917 bytes
 Brotli. CI enforces 6,500 bytes minified and 3,000 bytes gzip. Compression is
 measured in Node using gzip level 9 and default Brotli settings. Compression
 results can vary slightly between toolchain versions. These are transfer-size

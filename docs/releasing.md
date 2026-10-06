@@ -1,6 +1,7 @@
 # Release checklist
 
-The project is local and unpublished. `private: true` intentionally prevents npm
+The project is hosted on [GitHub](https://github.com/smate/tinyChart.js) and remains
+unpublished on npm. `private: true` intentionally prevents npm
 publishing ([npm package.json documentation](https://docs.npmjs.com/cli/v11/configuring-npm/package-json#private)).
 Local `npm pack` still works. Do not remove the flag just to run examples.
 
@@ -11,7 +12,7 @@ Before a public release:
   for `tinychart.js` on 2026-10-02; that is not a reservation or a guarantee that
   npm will allow publication under that name.
 - [ ] Confirm the copyright notice and maintainer identity.
-- [ ] With user authorization, create the remote repository and add real
+- [x] With user authorization, create the remote repository and add real
   `repository`, `homepage`, and `bugs` package metadata.
 - [ ] Configure a private vulnerability-reporting channel and conduct contact;
   update `SECURITY.md` and `CODE_OF_CONDUCT.md`.
@@ -28,5 +29,5 @@ Before a public release:
 - [ ] Verify the installed registry package and its documented example, then
   publish release notes and update the task backlog.
 
-No release workflow, remote, npm account, or publishing credential is configured
-by the initial setup.
+The GitHub remote and CI workflow are configured. No npm release workflow or
+publishing credential is configured by this setup.

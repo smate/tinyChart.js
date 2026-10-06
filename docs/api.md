@@ -5,8 +5,8 @@
 Named ES module export. `target` is a DOM element or CSS selector. Selectors are
 resolved with the current global `document`; a passed element uses its own
 `ownerDocument`. The chart appends one SVG and preserves existing host content.
-An invalid selector throws a browser selector error; a missing element throws
-`TypeError`.
+An invalid selector throws a browser selector error; a missing element or a
+non-element target (including a text node or document fragment) throws `TypeError`.
 
 ```js
 const chart = tinyChart(document.querySelector('#chart'), {
@@ -34,10 +34,16 @@ const chart = tinyChart(document.querySelector('#chart'), {
 | `xDomain` | Automatic | Optional `[min, max]`, both finite, with `min < max`. |
 | `yDomain` | Automatic | Optional `[min, max]`, both finite, with `min < max`. |
 
-Pass booleans for `axes` and `dots`, strings for colors and labels, and finite
-numbers where specified. Unknown options are ignored. Numeric ranges and data
-are validated; paint strings are passed to SVG for interpretation. Use solid
-CSS colors when handling untrusted paint input, since SVG also supports URL paints.
+Pass booleans for `axes` and `dots`, strings for colors, labels and optional series
+names, and finite numbers where specified. Invalid types throw `TypeError`;
+optional series colors and names may be omitted or `undefined`. Unknown options
+are ignored. Numeric ranges and data are validated; paint strings are passed to
+SVG for interpretation. Use solid CSS colors when handling untrusted paint input,
+since SVG also supports URL paints.
+
+SVG resource IDs stay distinct within each document and shadow tree, including
+when separate module copies create charts in detached hosts. Existing host IDs
+are preserved.
 
 The SVG uses `width: 100%; height: auto` and a fixed `viewBox`, so it follows its
 container's width while keeping its aspect ratio. All visual units, including
@@ -69,13 +75,16 @@ aspect ratio, call `update({ width, height })`.
   dot through a zero-length stroke. Duplicated coordinates are allowed.
 - Explicit domains clip data to the plot rectangle. Strokes centered on a plot
   edge are partially clipped; leave domain headroom if you want full endpoints.
-- `NaN`, infinity, strings, `undefined`, and malformed tuples throw `TypeError`.
-  Extreme ranges or scaling that cannot remain finite also throw `TypeError`.
+- `NaN`, infinity, strings, `undefined`, sparse array holes, and malformed tuples
+  throw `TypeError`. The series array must also have no holes.
+- Extreme domain ranges, scaled coordinates or segment lengths that cannot remain
+  finite throw `TypeError`. Constant nonzero domains whose 5% expansion underflows
+  also throw; supply an explicit domain to plot such tiny values.
 - The library reads but does not mutate data. It keeps references to the supplied
   arrays, so treat them as immutable and pass replacements on update.
 - Wobble is added perpendicular to each segment, only between data samples.
-  SVG coordinates are rounded to two decimals. This is a sketch effect, not a
-  smoothing or trend-fitting algorithm.
+  Each real sample uses its scaled coordinate directly, rounded to two decimals.
+  This is a sketch effect, not a smoothing or trend-fitting algorithm.
 
 ### Returned handle
 
