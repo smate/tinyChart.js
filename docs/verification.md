@@ -81,3 +81,7 @@ The fixes preserve failed-update atomicity and the dependency-free ESM runtime.
 - Uploaded source, tests, documentation, MIT license, issue templates and the
   Node 22/24 CI workflow. Generated artifacts remain excluded. The npm package
   stays unpublished with `private: true`.
+- [GitHub CI run 37429608954](https://github.com/smate/tinyChart.js/actions/runs/37429608954)
+  completed successfully on commit `cac4b3f`: both `check (22)` and `check (24)`
+  passed, including tests, build, size budgets, package smoke check and package
+  dry-run inspection.
