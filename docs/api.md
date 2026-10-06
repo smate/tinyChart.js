@@ -112,5 +112,5 @@ adequate contrast; colors alone should not convey essential distinctions.
 
 The output targets ES2022 and modern browsers with SVG and native ES modules.
 There is no legacy browser, TypeScript, CommonJS, or server-rendering build. Node
-is needed only for development and building. See [tasks](../tasks/README.md) for
+is needed only for development and building. See [verification notes](verification.md) for
 the browser compatibility checks still required before public release.

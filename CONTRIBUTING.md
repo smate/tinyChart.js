@@ -15,8 +15,8 @@ Use two-space indentation, LF endings, semicolons, and single-quoted JavaScript
 strings. Keep comments focused on intent. Avoid runtime dependencies and broad
 refactors in unrelated fixes. Build output and screenshots are not committed.
 
-Before proposing features, read [design decisions](docs/design.md) and the
-[task backlog](tasks/README.md). Line charts are the entire scope. HTML outside
+Before proposing features, read [design decisions](docs/design.md).
+Line charts are the entire scope. HTML outside
 the library is often the best place for application-specific controls and labels.
 
 Report bugs with a minimal dataset, options, browser version, expected behavior,

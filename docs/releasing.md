@@ -7,7 +7,9 @@ Local `npm pack` still works. Do not remove the flag just to run examples.
 
 Before a public release:
 
-- [ ] Finish TC-009–TC-011 in `tasks/README.md`.
+- [ ] Complete compatibility checks in Chromium, Firefox and Safari/WebKit,
+  including gaps, single points, clipping, resize, keyboard controls and accessible names.
+- [ ] Review the API and visual defaults with the maintainer.
 - [ ] Confirm the npm name and account ownership. A registry lookup returned 404
   for `tinychart.js` on 2026-10-02; that is not a reservation or a guarantee that
   npm will allow publication under that name.
@@ -27,7 +29,7 @@ Before a public release:
   flow. Never commit credentials. Prefer provenance when the publishing setup
   supports it.
 - [ ] Verify the installed registry package and its documented example, then
-  publish release notes and update the task backlog.
+  publish release notes and update the verification notes.
 
 The GitHub remote and CI workflow are configured. No npm release workflow or
 publishing credential is configured by this setup.

@@ -90,7 +90,7 @@ npm pack --dry-run # Inspect exactly what would ship
 
 - [API and defaults](docs/api.md)
 - [Design decisions](docs/design.md)
-- [Implementation and release tasks](tasks/README.md)
+- [Release checklist](docs/releasing.md)
 - [Contributing](CONTRIBUTING.md) · [Changelog](CHANGELOG.md)
 
 ## License

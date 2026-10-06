@@ -10,4 +10,4 @@
   browser when visual behavior changes.
 - Keep generated files, npm tarballs, and test screenshots out of Git.
 - Keep this repository local unless the user asks to publish or add a remote.
-- Update `tasks/README.md` with completed work and actual verification evidence.
+- Record completed work and actual verification evidence in `docs/verification.md`.

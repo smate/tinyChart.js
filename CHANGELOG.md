@@ -2,6 +2,8 @@
 
 ## Unreleased — 0.1.0
 
+- Removed the internal task directory and its Git history; updated documentation links.
+
 - Initial dependency-free ES module for handwritten SVG line charts.
 - Multiple series and colors, optional dotted background and axes.
 - Seeded sketch strokes, shared linear domains, explicit x/y pairs and gaps.
