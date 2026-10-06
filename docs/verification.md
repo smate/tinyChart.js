@@ -85,3 +85,16 @@ The fixes preserve failed-update atomicity and the dependency-free ESM runtime.
   completed successfully on commit `cac4b3f`: both `check (22)` and `check (24)`
   passed, including tests, build, size budgets, package smoke check and package
   dry-run inspection.
+
+## Repository history cleanup — 2026-10-06
+
+- Removed the internal task directory and updated README, contributing, API,
+  release-checklist and agent-instruction references.
+- Rewrote every commit to exclude that directory and removed it from local
+  snapshot trees as well. Verified its absence from all reachable Git objects
+  and from the path history across all refs.
+- Preserved a verified recovery bundle outside the repository before rewriting.
+- `npm run check` passed: 30 tests, build, size budgets and package smoke check.
+  Bundle sizes remain 4,055 bytes minified and 2,140 bytes gzip.
+- Commit IDs changed; previous CI run links document the checks on the original
+  commits. Existing clones must adopt the rewritten history before contributing.
